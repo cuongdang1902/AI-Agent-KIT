@@ -12,7 +12,7 @@ compatibility_date = "2025-01-01"
 # ─────────────────────────────────────────────────────────────
 [[kv_namespaces]]
 binding = "LICENSES_KV"
-id      = "YOUR_LICENSES_KV_ID"
+id      = "beca2779f17c4e6bbfdcbb0d8d157abf"
 
 # For local dev / `wrangler dev`, create a preview namespace too:
 #   npx wrangler kv:namespace create LICENSES_KV --preview

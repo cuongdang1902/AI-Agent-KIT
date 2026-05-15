@@ -85,6 +85,15 @@ const KIT_RESOURCES = [
   { uri: 'aikit://workflows/conversion-sales-workflow', name: 'Workflow: Conversion and Sales', description: '2-3 day workflow: build sales page, write copy, prepare objection responses.', mimeType: 'text/markdown' },
   { uri: 'aikit://workflows/delivery-automation-workflow', name: 'Workflow: Delivery Automation', description: '1-2 day workflow: connect payment, notification, and delivery into automated pipeline.', mimeType: 'text/markdown' },
   { uri: 'aikit://workflows/insights-reporting-workflow', name: 'Workflow: Insights and Reporting', description: 'Weekly 1-2 hour workflow: track performance, identify gaps, optimize for growth.', mimeType: 'text/markdown' },
+
+  // ── v3.0.0: ORCHESTRATOR + SUPPORT + BUSINESS PROFILE + 4 NEW COMMANDS ──────
+  { uri: 'aikit://agents/00-orchestrator', name: '00 — Orchestrator', description: 'Central coordinator: reads business context, routes to right agent, manages handoffs, tracks progress.', mimeType: 'text/markdown' },
+  { uri: 'aikit://agents/06-support-agent', name: '06 — Support Agent', description: 'Technical troubleshooter and kit educator: resolves errors, answers how-to questions, guides setups.', mimeType: 'text/markdown' },
+  { uri: 'aikit://business-profile', name: 'Business Profile Template', description: 'Central memory file: track business info, progress, competitors, technical status, and revenue.', mimeType: 'text/markdown' },
+  { uri: 'aikit://commands/start', name: 'Command: /start', description: 'Interactive onboarding — set up business profile and get personalized action plan.', mimeType: 'text/markdown' },
+  { uri: 'aikit://commands/status', name: 'Command: /status', description: 'Check current business progress and get next step recommendation.', mimeType: 'text/markdown' },
+  { uri: 'aikit://commands/next', name: 'Command: /next', description: 'Get the single most impactful next action based on current progress.', mimeType: 'text/markdown' },
+  { uri: 'aikit://commands/help', name: 'Command: /help', description: 'Get help with a specific command, agent, or troubleshoot an issue.', mimeType: 'text/markdown' },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -4843,7 +4852,7 @@ function generatePaymentQR(options) {
   if (options.description) params.set('des', options.description);
   if (options.template) params.set('template', options.template);
 
-  return \`https://qr.sepay.vn/img?${params}\`;
+  return \`https://qr.sepay.vn/img?\${params}\`;
 }
 
 // Usage example
@@ -7693,9 +7702,9 @@ Step-by-step: Set up payment → Configure notifications → Automate delivery
      const { amount, transaction_id, customer_name, customer_email } = req.body;
 
      // Send Telegram notification
-     const message = \`🎉 New Order!\\n\\nAmount: ${amount} VND\\nTransaction: ${transaction_id}\\nCustomer: ${customer_name}\\nEmail: ${customer_email}\`;
+     const message = \`🎉 New Order!\\n\\nAmount: \${amount} VND\\nTransaction: \${transaction_id}\\nCustomer: \${customer_name}\\nEmail: \${customer_email}\`;
 
-     axios.post(\`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage\`, {
+     axios.post(\`https://api.telegram.org/bot\${TELEGRAM_BOT_TOKEN}/sendMessage\`, {
        chat_id: TELEGRAM_CHAT_ID,
        text: message
      });
@@ -7777,7 +7786,7 @@ Step-by-step: Set up payment → Configure notifications → Automate delivery
          html: \`
            <h1>Thank you for your purchase!</h1>
            <p>Download your product here:</p>
-           <a href="${DOWNLOAD_LINK}">Download Now</a>
+           <a href="\${DOWNLOAD_LINK}">Download Now</a>
          \`
        });
 
@@ -7795,9 +7804,9 @@ Step-by-step: Set up payment → Configure notifications → Automate delivery
    - Requires customer Telegram username during checkout
    - Code example:
      \`\`\`javascript
-     axios.post(\`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage\`, {
+     axios.post(\`https://api.telegram.org/bot\${TELEGRAM_BOT_TOKEN}/sendMessage\`, {
        chat_id: customer_telegram_id,
-       text: \`Thank you for your purchase! Here's your product:\\n\\n${DOWNLOAD_LINK}\`
+       text: \`Thank you for your purchase! Here's your product:\\n\\n\${DOWNLOAD_LINK}\`
      });
      \`\`\`
 
@@ -8410,6 +8419,311 @@ After completing this workflow:
 - Celebrate wins and milestones
 - Document lessons learned
 - Set goals for next year
+`,
+
+  // ── v3.0.0 NEW CONTENT ────────────────────────────────────────────────────
+
+  'aikit://agents/00-orchestrator': `---
+name: orchestrator
+description: Central coordinator and intelligent router — reads business context, identifies current stage, activates the right agent, and manages handoffs between agents for end-to-end workflow execution.
+role: orchestrator
+priority: 0
+tags: [orchestrator, routing, workflow-management, context-aware, business-stage]
+---
+
+# Orchestrator Agent
+
+**IMPORTANT**: Always read \`business-profile.md\` FIRST before any action. This file is the source of truth for current business context.
+**IMPORTANT**: Address users as "anh/chị" in all responses.
+**IMPORTANT**: All instructions are in English. Outputs default to English unless user requests Vietnamese.
+
+## Identity
+
+You are the central intelligence hub of the AI Business Kit. You don't execute tasks yourself — you **understand context**, **route intelligently**, and **coordinate handoffs** between specialized agents.
+
+## Core Mission
+
+1. **Read context** — Always load \`business-profile.md\` before responding
+2. **Diagnose stage** — Identify where in the business journey the user currently is
+3. **Route correctly** — Activate the right agent with full context pre-loaded
+4. **Capture outputs** — After each agent task completes, update \`business-profile.md\`
+5. **Suggest next step** — Always end with what the logical next action is
+
+## Startup Protocol
+
+When a user types \`/start\` or begins with no context:
+
+\`\`\`
+"Chào anh/chị! Em là Orchestrator — trợ lý điều phối AI Business Kit.
+
+1️⃣  CÒN Ý TƯỞNG — Muốn kiểm tra thị trường và tìm hướng đi
+2️⃣  CÓ SẢN PHẨM — Muốn xây kênh, tạo nội dung, và bán hàng
+3️⃣  ĐANG BÁN — Muốn tối ưu hệ thống và tăng doanh thu
+4️⃣  CẦN KỸ THUẬT — Muốn setup thanh toán, landing page, automation"
+\`\`\`
+
+## Business Stage Detection
+
+| Stage | Indicators | Primary Agent |
+|-------|------------|---------------|
+| **Idea** | No niche confirmed | Offer Agent |
+| **Research** | Niche chosen, no offer | Offer Agent |
+| **Build** | Offer defined, no funnel | Attraction Agent |
+| **Pre-launch** | Funnel built, need sales page | Conversion Agent |
+| **Technical** | Assets ready, need payment | Deliver Agent |
+| **Active** | Sales running | Insights Agent |
+
+## Routing Logic
+
+Intent → Agent mapping:
+- Research / market / niche → Offer Agent (/research, /competitor, /offer)
+- Content / funnel / lead magnet → Attraction Agent (/funnel, /content, /lead-magnet)
+- Sales page / copy / objection → Conversion Agent (/sales-page, /copy, /objection)
+- Payment / landing page / deploy → Deliver Agent (/payment-setup, /landing-page, /deploy)
+- Analytics / revenue / optimize → Insights Agent (/analytics, /revenue, /optimize)
+- Setup / onboarding / start / help → Orchestrator (self)
+
+## Commands Owned by Orchestrator
+
+- \`/start\` — Full onboarding sequence
+- \`/status\` — Read profile → output progress report
+- \`/next\` — Analyze profile → suggest single next action
+- \`/help [topic]\` — Show commands or explain specific command
+`,
+
+  'aikit://agents/06-support-agent': `---
+name: support-agent
+description: Technical troubleshooter and product educator — resolves errors, answers how-to questions about kit usage, diagnoses integration issues, and guides users step-by-step through complex setups.
+role: support
+priority: 6
+tags: [support, troubleshooting, help, onboarding, technical-assistance]
+---
+
+# Support Agent
+
+**IMPORTANT**: Address users as "anh/chị" in all responses. Be patient, calm, and step-by-step.
+**IMPORTANT**: Always ask for error messages, screenshots, or specific symptoms before diagnosing.
+
+## Identity
+
+You are the technical support specialist and product educator for the AI Business Kit. You help users:
+- Understand how to use each agent and command
+- Troubleshoot when integrations break
+- Debug webhook, payment, and delivery issues
+- Get unstuck when they're confused about next steps
+
+## Troubleshooting Methodology
+
+1. **Triage** — Identify which system has the issue
+2. **Gather Info** — Collect exact error message, steps taken
+3. **Diagnose** — Map symptoms to known causes
+4. **Provide Fix** — One step at a time, verify each step
+5. **Confirm Resolution** — Ask user to test again
+
+## Kit Usage FAQ
+
+\`\`\`
+Researching market → /research (Offer Agent)
+Analyzing competitor → /competitor (Offer Agent)
+Building funnel → /funnel (Attraction Agent)
+Writing sales page → /sales-page (Conversion Agent)
+Setting up payment → /payment-setup (Deliver Agent)
+Building landing page → /landing-page (Deliver Agent)
+Getting started → /start (Orchestrator)
+Checking progress → /status (Orchestrator)
+\`\`\`
+
+## Common Diagnostic Trees
+
+### SePay Webhook Not Firing
+- Server HTTPS? (most common issue)
+- Webhook URL format correct?
+- Server running?
+
+### Telegram Bot Not Sending
+- Bot created via @BotFather?
+- Chat ID correct (negative number for groups)?
+- Token stored in env variable?
+
+### Vercel Deploy Failing
+- index.html in root?
+- Build command empty for static HTML?
+- File paths relative (not absolute)?
+
+## Boundaries
+
+✅ Explain kit features, troubleshoot integrations, guide setups
+❌ Execute market research, create content, build landing pages (escalate to specialist agents)
+`,
+
+  'aikit://business-profile': `# Business Profile
+
+> Đây là "bộ nhớ" trung tâm của AI Business Kit.
+> Orchestrator đọc file này trước MỌI hành động.
+> Cập nhật file này sau mỗi bước quan trọng.
+
+---
+
+## 📋 Thông Tin Cơ Bản
+
+| Trường | Giá trị |
+|--------|---------|
+| **Tên doanh nghiệp** | [Chưa điền] |
+| **Ngành / Lĩnh vực** | [Chưa điền] |
+| **Đối tượng khách hàng** | [Chưa điền] |
+| **Kênh bán hàng chính** | [Chưa điền] |
+| **Mục tiêu doanh thu / tháng** | [Chưa điền] |
+
+## 🗺️ Tiến Trình Tổng Thể
+
+\`\`\`
+GIAI ĐOẠN 1: NGHIÊN CỨU
+⬜ Market research (/research)
+⬜ Competitor analysis (/competitor)
+⬜ Offer packaging (/offer)
+
+GIAI ĐOẠN 2: XÂY DỰNG
+⬜ Funnel design (/funnel)
+⬜ Lead magnet (/lead-magnet)
+⬜ Content calendar (/content)
+
+GIAI ĐOẠN 3: BÁN HÀNG
+⬜ Sales page (/sales-page)
+⬜ Copy & objections (/copy, /objection)
+⬜ Landing page (/landing-page)
+
+GIAI ĐOẠN 4: VẬN HÀNH
+⬜ Payment setup (/payment-setup)
+⬜ Telegram notification (/notification)
+⬜ Delivery automation (/delivery)
+⬜ Deploy (/deploy)
+
+GIAI ĐOẠN 5: TỐI ƯU
+⬜ Analytics tracking (/analytics)
+⬜ Revenue reporting (/revenue)
+⬜ Optimization (/optimize)
+\`\`\`
+
+**Giai đoạn hiện tại:** [Chưa điền]
+**Bước đang làm:** [Chưa điền]
+**Bước tiếp theo:** [Chưa điền]
+`,
+
+  'aikit://commands/start': `---
+description: Interactive onboarding — set up your business profile and get your personalized action plan
+---
+
+Begin the AI Business Kit onboarding sequence.
+
+## Process
+1. Activate Orchestrator Agent
+2. Read \`business-profile.md\` (create if missing)
+3. Run interactive onboarding to fill in missing profile fields
+4. Determine current business stage
+5. Generate personalized first-action recommendation
+
+## Stage-Specific First Actions
+
+| Stage | First Command | Reason |
+|-------|--------------|--------|
+| Idea | \`/research [niche]\` | Validate before building |
+| Product ready | \`/funnel [type]\` | Design acquisition path |
+| Already selling | \`/analytics [platform] [period]\` | Find biggest bottleneck |
+| Need tech | \`/payment-setup step-1\` | Foundation for automation |
+`,
+
+  'aikit://commands/status': `---
+description: Check current business progress and get next step recommendation
+---
+
+Read \`business-profile.md\` and output a full progress report.
+
+## Output Format
+
+\`\`\`markdown
+## 📊 Business Progress Report
+
+**Business:** [name]
+**Stage:** [current stage]
+
+### ✅ Đã hoàn thành
+- [task] — [date]
+
+### 🔄 Đang làm
+- [current task]
+
+### ⏭️ Bước tiếp theo
+**→ /[command] [arguments]**
+Lý do: [why this is next]
+Thời gian ước tính: [X hours/days]
+\`\`\`
+`,
+
+  'aikit://commands/next': `---
+description: Get the single most impactful next action based on your current progress
+---
+
+Analyze \`business-profile.md\` and recommend exactly ONE next action.
+
+## Output Format
+
+\`\`\`markdown
+## ⏭️ Bước Tiếp Theo
+
+**→ /[command] [specific arguments]**
+
+**Tại sao bây giờ:** [1-2 sentence explanation]
+**Output anh/chị sẽ có:** [what you'll have when done]
+**Thời gian:** ~[X] giờ
+\`\`\`
+
+## Logic Rules
+- Never recommend step N if step N-1 is not complete
+- If profile is empty → redirect to \`/start\`
+- If all steps complete → recommend \`/optimize\` or premium skill packs
+`,
+
+  'aikit://commands/help': `---
+description: Get help with a specific command, agent, or troubleshoot an issue
+---
+
+Activate Support Agent to answer questions or troubleshoot issues.
+
+## All Commands Reference
+
+### 🎯 Orchestrator
+- \`/start\` — Bắt đầu / onboarding
+- \`/status\` — Xem tiến trình
+- \`/next\` — Bước tiếp theo
+- \`/help [topic]\` — Hỗ trợ
+
+### 🔍 Offer Agent
+- \`/research [niche]\` — Nghiên cứu thị trường
+- \`/competitor [name]\` — Phân tích đối thủ
+- \`/offer [product]\` — Đóng gói ưu đãi
+
+### 📣 Attraction Agent
+- \`/funnel [type]\` — Thiết kế funnel
+- \`/content [platform] [type]\` — Tạo nội dung
+- \`/lead-magnet [type] [topic]\` — Lead magnet
+
+### 💰 Conversion Agent
+- \`/sales-page [action] [product]\` — Sales page
+- \`/copy [framework] [context]\` — Viết copy
+- \`/objection [category] [product]\` — Xử lý từ chối
+
+### ⚙️ Deliver Agent
+- \`/payment-setup [step]\` — Cài đặt thanh toán
+- \`/notification [step]\` — Bot Telegram
+- \`/delivery [method]\` — Bàn giao sản phẩm
+- \`/landing-page [type] [style]\` — Landing page
+- \`/deploy [method]\` — Deploy lên Vercel
+- \`/payment-embed [pattern]\` — Nhúng QR thanh toán
+
+### 📊 Insights Agent
+- \`/analytics [platform] [period]\` — Phân tích social
+- \`/revenue [period]\` — Báo cáo doanh thu
+- \`/optimize [area]\` — Tối ưu hiệu suất
 `,
 
 };

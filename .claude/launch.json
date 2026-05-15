@@ -4,8 +4,9 @@
     {
       "name": "Landing Page (docker + nginx)",
       "runtimeExecutable": "docker",
-      "runtimeArgs": ["run", "--rm", "-p", "3000:80", "-v", "./:/usr/share/nginx/html:ro", "nginx:alpine"],
-      "port": 3000
+      "runtimeArgs": ["run", "--rm", "-p", "3001:80", "-v", "./:/usr/share/nginx/html:ro", "nginx:alpine"],
+      "autoPort": true,
+      "port": 3001
     },
     {
       "name": "Landing Page (npx serve)",

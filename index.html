@@ -617,8 +617,28 @@
         <p class="text-emerald-400 text-sm font-medium">✓ Bạn tiết kiệm 8,641,000đ (92%)</p>
       </div>
 
-      <!-- QR + Instructions -->
-      <div class="p-7">
+      <!-- Step 1: Email -->
+      <div id="email-step" class="p-7">
+        <p class="text-center text-white font-semibold text-base mb-1">Bước 1 / 2 — Nhập email</p>
+        <p class="text-center text-slate-400 text-sm mb-5">License key sẽ được gửi tự động vào email này sau khi thanh toán</p>
+        <div class="space-y-3">
+          <input
+            type="email"
+            id="email-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+            class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-violet-500/60 focus:bg-white/8 transition-all"
+          />
+          <p id="email-error" class="hidden text-red-400 text-xs text-center"></p>
+          <button id="email-confirm-btn" class="cta-btn w-full text-white py-3.5 px-6 rounded-xl font-bold text-sm">
+            Tiếp tục → Thanh toán
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: QR + Instructions (hidden until email confirmed) -->
+      <div id="qr-step" class="hidden p-7">
+        <p class="text-center text-white font-semibold text-base mb-1">Bước 2 / 2 — Quét QR thanh toán</p>
         <p class="text-center text-slate-300 text-sm mb-5">
           📱 Mở app ngân hàng → Quét QR → Chuyển khoản đúng <strong class="text-white">759,000đ</strong>
         </p>
@@ -701,7 +721,7 @@
           </div>
 
         </div>
-      </div>
+      </div><!-- /qr-step -->
     </div>
 
     <!-- Trust badges -->
@@ -759,10 +779,10 @@
   // ⚠️ SAU KHI DEPLOY WORKER, thay URL bên dưới:
   // npx wrangler deploy (trong thư mục /worker)
   // Lấy URL dạng: https://aikit-payment.TEN.workers.dev
-  const WORKER_URL = 'https://aikit-payment.YOUR_SUBDOMAIN.workers.dev';
+  const WORKER_URL = 'https://aikit-payment.cuongdang1902.workers.dev';
   // ============================================================
 
-  (function startPolling() {
+  function startPolling() {
     const MAX_ATTEMPTS = 120;   // 10 phút (120 × 5s)
     const INTERVAL_MS  = 5000;
     let   attempts     = 0;
@@ -826,10 +846,46 @@
       stateTimeout.classList.remove('hidden');
     }
 
-    // Bắt đầu polling ngay sau khi load
+    // Bắt đầu polling
     timer = setInterval(checkPayment, INTERVAL_MS);
     checkPayment(); // lần đầu không chờ
-  })();
+  }
+
+  // ── EMAIL STEP ────────────────────────────────────────────────────
+  const emailInput      = document.getElementById('email-input');
+  const emailConfirmBtn = document.getElementById('email-confirm-btn');
+  const emailStep       = document.getElementById('email-step');
+  const qrStep          = document.getElementById('qr-step');
+  const emailError      = document.getElementById('email-error');
+
+  emailConfirmBtn.addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailError.textContent = 'Vui lòng nhập email hợp lệ';
+      emailError.classList.remove('hidden');
+      return;
+    }
+    emailError.classList.add('hidden');
+    emailConfirmBtn.textContent = 'Đang xử lý...';
+    emailConfirmBtn.disabled = true;
+
+    try {
+      await fetch(WORKER_URL + '/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId, email }),
+      });
+    } catch (_) { /* vẫn tiếp tục dù mạng lỗi */ }
+
+    emailStep.classList.add('hidden');
+    qrStep.classList.remove('hidden');
+    startPolling();
+  });
+
+  emailInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') emailConfirmBtn.click();
+  });
+  // ─────────────────────────────────────────────────────────────────
 
   // ============================================================
   // ⚠️ ĐỂ CẬP NHẬT THÔNG TIN NGÂN HÀNG THỰC:

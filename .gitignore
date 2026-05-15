@@ -1,0 +1,10 @@
+# Wrangler build artifacts
+.wrangler/
+worker/.wrangler/
+mcp-server/.wrangler/
+
+# Local Claude settings
+.claude/settings.local.json
+
+# Node
+node_modules/

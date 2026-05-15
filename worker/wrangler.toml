@@ -7,4 +7,10 @@ compatibility_date = "2025-01-01"
 # Sau đó thay YOUR_KV_NAMESPACE_ID bằng id trả về
 [[kv_namespaces]]
 binding = "ORDERS_KV"
-id      = "YOUR_KV_NAMESPACE_ID"
+id      = "51de130faf154b79bfd034b54e4cd56b"
+
+# Shared với aikit-mcp worker — dùng cùng namespace ID
+# npx wrangler kv:namespace create LICENSES_KV
+[[kv_namespaces]]
+binding = "LICENSES_KV"
+id      = "beca2779f17c4e6bbfdcbb0d8d157abf"
