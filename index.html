@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Business Kit — 5 AI Agents. 18 Skills. 18 Commands.</title>
+  <meta name="description" content="Xây hệ thống kinh doanh online hoàn chỉnh — chỉ bằng cách gõ lệnh cho AI. 5 Agents chuyên biệt tích hợp Claude Code. Chỉ 759,000đ.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI Agent Business Kit — Hệ thống 5 AI Agent cho Kinh Doanh Online">
+  <meta property="og:description" content="Research thị trường, viết copy, build sales page, nhận thanh toán — tất cả bằng lệnh AI. Chỉ 759K.">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Be Vietnam Pro -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    * { font-family: 'Be Vietnam Pro', sans-serif; }
+
+    body { background-color: #080d1a; color: #f1f5f9; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .glass-hover {
+      transition: all 0.25s ease;
+    }
+    .glass-hover:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(124,58,237,0.4);
+      transform: translateY(-3px);
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      box-shadow: 0 4px 24px rgba(124,58,237,0.45);
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.65);
+    }
+
+    .cta-btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.2);
+      transition: all 0.25s ease;
+    }
+    .cta-btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(124,58,237,0.5), rgba(6,182,212,0.5), transparent);
+    }
+
+    /* Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.12;
+      pointer-events: none;
+      animation: blobPulse 9s ease-in-out infinite;
+    }
+    @keyframes blobPulse {
+      0%,100% { transform: scale(1); opacity: 0.1; }
+      50% { transform: scale(1.08); opacity: 0.18; }
+    }
+
+    /* FAQ */
+    .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-content.open { max-height: 400px; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #080d1a; }
+    ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 4px; }
+
+    code { font-family: 'Courier New', monospace; }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ========== NAVBAR ========== -->
+<nav class="fixed top-0 w-full z-50 bg-[#080d1a]/90 backdrop-blur-lg border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex justify-between items-center">
+    <div class="flex items-center gap-2.5">
+      <span class="text-xl">🤖</span>
+      <span class="font-bold text-base">AI Agent <span class="gradient-text">Business Kit</span></span>
+    </div>
+    <a href="#payment" class="cta-btn text-white px-5 py-2 rounded-full text-sm font-semibold hidden sm:block whitespace-nowrap">
+      Sở hữu ngay · 759K
+    </a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="relative min-h-screen flex items-center justify-center pt-16 pb-20 overflow-hidden"
+  style="background: radial-gradient(ellipse at 50% 0%, #1a0e40 0%, #080d1a 65%);">
+  <!-- Decorative blobs -->
+  <div class="blob w-[500px] h-[500px] bg-violet-700 -top-20 -left-32"></div>
+  <div class="blob w-[400px] h-[400px] bg-cyan-600 -bottom-10 -right-20" style="animation-delay:4s"></div>
+
+  <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+    <!-- Eyebrow badge -->
+    <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm mb-8">
+      <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0"></span>
+      <span class="text-slate-300">Dành riêng cho người dùng Claude Code</span>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="text-4xl sm:text-5xl lg:text-[3.6rem] font-black leading-[1.15] mb-6">
+      Xây hệ thống kinh doanh<br class="hidden sm:block"> online hoàn chỉnh —<br>
+      <span class="gradient-text">chỉ bằng cách gõ lệnh</span>
+    </h1>
+
+    <!-- Sub -->
+    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8">
+      <strong class="text-white">AI Agent Business Kit</strong> tích hợp thẳng vào Claude Code của bạn:
+      research thị trường, viết copy, build sales page, nhận thanh toán — tất cả tự động.<br>
+      <span class="text-slate-400">Không thuê agency. Không cần code. Không mất tháng để học.</span>
+    </p>
+
+    <!-- 3 bullets -->
+    <div class="flex flex-col sm:flex-row justify-center gap-x-8 gap-y-2 mb-10 text-sm text-slate-300">
+      <span><span class="text-cyan-400 mr-1.5">✓</span>Kết quả ngay sau 1 lệnh</span>
+      <span><span class="text-cyan-400 mr-1.5">✓</span>Pipeline end-to-end hoàn chỉnh</span>
+      <span><span class="text-cyan-400 mr-1.5">✓</span>Hoàn tiền 100% sau 30 ngày</span>
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-10">
+      <a href="#payment" class="cta-btn text-white px-9 py-4 rounded-full text-lg font-bold w-full sm:w-auto text-center">
+        Sở hữu ngay &nbsp;·&nbsp;
+        <span class="line-through text-white/50 text-sm font-normal">9,400,000đ</span>
+        &nbsp;<strong>759,000đ</strong>
+      </a>
+      <a href="#what-inside" class="cta-btn-outline glass text-slate-200 px-7 py-4 rounded-full text-base font-medium w-full sm:w-auto text-center">
+        Xem bên trong →
+      </a>
+    </div>
+
+    <!-- Urgency pill -->
+    <div class="inline-flex items-center gap-2 glass px-5 py-2.5 rounded-xl text-sm">
+      <span class="text-amber-400 font-bold">⚡ Early Bird:</span>
+      <span class="text-slate-300">100 bản đầu tiên · Sau đó tăng lên <span class="line-through text-slate-500">999K</span> → <span class="font-semibold text-white">1,499K</span></span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== PROBLEM ========== -->
+<section class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Bạn có đang gặp những vấn đề này?</h2>
+      <p class="text-slate-400">Chỉ cần 1 câu "Có" — kit này đáng giá 10× số tiền bạn bỏ ra.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="glass glass-hover p-6 rounded-2xl">
+        <div class="text-3xl mb-3">😩</div>
+        <h3 class="font-semibold text-white mb-2">Research thị trường mãi không ra</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Không biết market có nhu cầu không, build xong mới biết không ai mua. Tốn hàng tháng nghiên cứu vẫn mơ hồ.</p>
+      </div>
+      <div class="glass glass-hover p-6 rounded-2xl">
+        <div class="text-3xl mb-3">✍️</div>
+        <h3 class="font-semibold text-white mb-2">Viết copy, sales page không ai mua</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Viết mãi không ra lời, thuê người thì đắt và họ không hiểu sản phẩm của bạn bằng chính bạn.</p>
+      </div>
+      <div class="glass glass-hover p-6 rounded-2xl">
+        <div class="text-3xl mb-3">💸</div>
+        <h3 class="font-semibold text-white mb-2">Tốn tiền agency mà vẫn không scale</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">5–20M/tháng cho agency, phụ thuộc họ hoàn toàn, không chủ động được, không hiểu quy trình.</p>
+      </div>
+      <div class="glass glass-hover p-6 rounded-2xl">
+        <div class="text-3xl mb-3">🤯</div>
+        <h3 class="font-semibold text-white mb-2">Quá nhiều AI tools, không có hệ thống</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Biết ChatGPT, Claude, n8n... nhưng không có workflow kinh doanh cụ thể để áp dụng thực tế.</p>
+      </div>
+      <div class="glass glass-hover p-6 rounded-2xl">
+        <div class="text-3xl mb-3">⏰</div>
+        <h3 class="font-semibold text-white mb-2">20+ giờ/tuần cho việc AI làm được</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Content, báo cáo, phân tích đối thủ, email — những việc manual tốn thời gian mà không tạo ra doanh thu.</p>
+      </div>
+      <div class="glass glass-hover p-6 rounded-2xl">
+        <div class="text-3xl mb-3">🚀</div>
+        <h3 class="font-semibold text-white mb-2">Có Claude Code nhưng chưa biết làm gì</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Đã cài, đã dùng thử — nhưng chưa có workflow kinh doanh thực chiến để tận dụng hết sức mạnh.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== SOLUTION BRIDGE ========== -->
+<section class="py-20 px-4 text-center">
+  <div class="max-w-3xl mx-auto">
+    <span class="inline-block glass text-cyan-400 text-sm px-4 py-1.5 rounded-full mb-6">Giải pháp</span>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black mb-6 leading-tight">
+      Giới thiệu <span class="gradient-text">AI Agent Business Kit</span>
+    </h2>
+    <p class="text-slate-300 text-lg leading-relaxed mb-10">
+      Hệ thống <strong class="text-white">5 AI Agents chuyên biệt</strong> được cài thẳng vào Claude Code —
+      mỗi Agent có expertise riêng, đi kèm knowledge bases, frameworks đã được nghiên cứu sẵn.<br><br>
+      Gõ <code class="bg-white/10 text-cyan-400 px-2 py-0.5 rounded">/research</code> → AI phân tích thị trường.<br>
+      Gõ <code class="bg-white/10 text-cyan-400 px-2 py-0.5 rounded">/copy PAS</code> → AI viết copy chuyển đổi cao.<br>
+      Gõ <code class="bg-white/10 text-cyan-400 px-2 py-0.5 rounded">/landing-page</code> → AI build trang HTML deploy được.<br>
+      Gõ <code class="bg-white/10 text-cyan-400 px-2 py-0.5 rounded">/payment-embed</code> → AI nhúng QR SePay vào trang.<br><br>
+      <strong class="text-white">Từ ý tưởng → nhận tiền đầu tiên trong 7 ngày.</strong>
+    </p>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="glass p-5 rounded-2xl">
+        <div class="text-4xl font-black gradient-text mb-1">5</div>
+        <div class="text-slate-400 text-sm">AI Agents chuyên biệt</div>
+      </div>
+      <div class="glass p-5 rounded-2xl">
+        <div class="text-4xl font-black gradient-text mb-1">18</div>
+        <div class="text-slate-400 text-sm">Skills & Frameworks</div>
+      </div>
+      <div class="glass p-5 rounded-2xl">
+        <div class="text-4xl font-black gradient-text mb-1">18</div>
+        <div class="text-slate-400 text-sm">Commands sẵn dùng</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== WHAT'S INSIDE ========== -->
+<section id="what-inside" class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">5 AI Agents — Mỗi Agent 1 Chuyên Môn Riêng</h2>
+      <p class="text-slate-400">Không phải 1 AI làm tất cả. Pipeline 5 bước liên kết hoàn chỉnh.</p>
+    </div>
+    <div class="space-y-4">
+      <!-- Agent 1 -->
+      <div class="glass glass-hover p-6 rounded-2xl border border-white/5">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-violet-500/15 flex items-center justify-center text-2xl flex-shrink-0">🎯</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h3 class="font-bold text-white text-lg">Agent 1: Offer Agent</h3>
+              <span class="bg-violet-500/15 text-violet-400 px-2 py-0.5 rounded text-xs font-medium">Research & Strategy</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Nghiên cứu thị trường, phân tích đối thủ, thiết kế offer với value stacking theo framework RAPP chuyên nghiệp.</p>
+            <div class="flex flex-wrap gap-2">
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/research [niche]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/competitor [name]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/offer [product]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Agent 2 -->
+      <div class="glass glass-hover p-6 rounded-2xl border border-white/5">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center text-2xl flex-shrink-0">🧲</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h3 class="font-bold text-white text-lg">Agent 2: Attraction Agent</h3>
+              <span class="bg-cyan-500/15 text-cyan-400 px-2 py-0.5 rounded text-xs font-medium">Content & Funnel</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Thiết kế phễu bán hàng, tạo content đa nền tảng (Facebook, Instagram, TikTok, YouTube, Zalo), xây lead magnet thu hút khách.</p>
+            <div class="flex flex-wrap gap-2">
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/funnel [type]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/content [platform]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/lead-magnet [topic]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Agent 3 -->
+      <div class="glass glass-hover p-6 rounded-2xl border border-white/5">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/15 flex items-center justify-center text-2xl flex-shrink-0">💬</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h3 class="font-bold text-white text-lg">Agent 3: Conversion Agent</h3>
+              <span class="bg-emerald-500/15 text-emerald-400 px-2 py-0.5 rounded text-xs font-medium">Copy & Sales</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Viết copy theo 20+ frameworks (PAS, AIDA, BAB, Before-After-Bridge...), blueprint sales page chuyển đổi cao, xử lý từ chối.</p>
+            <div class="flex flex-wrap gap-2">
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/sales-page [product]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/copy [framework]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/objection [category]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Agent 4 -->
+      <div class="glass glass-hover p-6 rounded-2xl border border-white/5">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/15 flex items-center justify-center text-2xl flex-shrink-0">⚡</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h3 class="font-bold text-white text-lg">Agent 4: Deliver Agent</h3>
+              <span class="bg-amber-500/15 text-amber-400 px-2 py-0.5 rounded text-xs font-medium">Payment & Deploy</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Setup SePay VietQR, Telegram bot thông báo đơn hàng, build landing page HTML deployable, deploy lên Vercel chỉ 1 lệnh.</p>
+            <div class="flex flex-wrap gap-2">
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/landing-page</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/payment-embed</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/payment-setup</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/deploy</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/notification</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/delivery</code>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Agent 5 -->
+      <div class="glass glass-hover p-6 rounded-2xl border border-white/5">
+        <div class="flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-pink-500/15 flex items-center justify-center text-2xl flex-shrink-0">📊</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <h3 class="font-bold text-white text-lg">Agent 5: Insights Agent</h3>
+              <span class="bg-pink-500/15 text-pink-400 px-2 py-0.5 rounded text-xs font-medium">Analytics & Growth</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-3 leading-relaxed">Phân tích hiệu quả social media, báo cáo doanh thu tự động, tư vấn tối ưu chuyển đổi dựa trên dữ liệu thực.</p>
+            <div class="flex flex-wrap gap-2">
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/analytics [platform]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/revenue [period]</code>
+              <code class="bg-white/5 text-cyan-400 px-3 py-1 rounded-full text-xs">/optimize [area]</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-day roadmap -->
+    <div class="mt-12 glass rounded-2xl p-6 border border-violet-500/15">
+      <h3 class="font-bold text-white text-lg mb-4 text-center">🗓️ Từ ý tưởng → nhận tiền trong 7 ngày</h3>
+      <div class="space-y-3 text-sm">
+        <div class="flex gap-3"><span class="text-violet-400 font-bold flex-shrink-0 w-16">Ngày 1</span><span class="text-slate-300">Cài kit · Chạy <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/research [niche]</code> → có market research hoàn chỉnh</span></div>
+        <div class="flex gap-3"><span class="text-violet-400 font-bold flex-shrink-0 w-16">Ngày 2–3</span><span class="text-slate-300">Chạy <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/competitor</code> + <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/offer</code> → có offer package đầy đủ</span></div>
+        <div class="flex gap-3"><span class="text-violet-400 font-bold flex-shrink-0 w-16">Ngày 4–5</span><span class="text-slate-300">Chạy <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/copy PAS</code> + <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/sales-page</code> → có copy chuyển đổi cao</span></div>
+        <div class="flex gap-3"><span class="text-violet-400 font-bold flex-shrink-0 w-16">Ngày 6–7</span><span class="text-slate-300">Chạy <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/landing-page</code> + <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/payment-embed</code> + <code class="bg-white/8 text-cyan-400 px-1.5 rounded">/deploy</code> → trang live, nhận đơn hàng đầu tiên</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== VALUE STACK ========== -->
+<section class="py-20 px-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Bạn nhận được gì với 759,000đ?</h2>
+      <p class="text-slate-400">Tổng giá trị thực: <span class="text-white font-bold">9,400,000đ</span></p>
+    </div>
+
+    <div class="glass rounded-2xl overflow-hidden border border-white/8">
+      <div class="p-5 border-b border-white/8 flex justify-between items-start gap-4">
+        <div>
+          <div class="font-semibold text-white">✅ AI Agent Business Kit</div>
+          <div class="text-slate-400 text-sm mt-0.5">5 Agents · 18 Skills · 18 Commands tích hợp Claude Code</div>
+        </div>
+        <div class="text-white font-bold flex-shrink-0">4,500,000đ</div>
+      </div>
+      <div class="p-5 border-b border-white/8 flex justify-between items-start gap-4">
+        <div>
+          <div class="font-semibold text-white">✅ BONUS #1: 5 Workflow Blueprints</div>
+          <div class="text-slate-400 text-sm mt-0.5">Quy trình step-by-step cho từng giai đoạn kinh doanh</div>
+        </div>
+        <div class="text-white font-bold flex-shrink-0">1,500,000đ</div>
+      </div>
+      <div class="p-5 border-b border-white/8 flex justify-between items-start gap-4">
+        <div>
+          <div class="font-semibold text-white">✅ BONUS #2: 18 Reference Libraries</div>
+          <div class="text-slate-400 text-sm mt-0.5">Kho frameworks, guides & knowledge bases chuyên sâu</div>
+        </div>
+        <div class="text-white font-bold flex-shrink-0">2,000,000đ</div>
+      </div>
+      <div class="p-5 border-b border-white/8 flex justify-between items-start gap-4">
+        <div>
+          <div class="font-semibold text-white">✅ BONUS #3: Ready-to-Use Templates</div>
+          <div class="text-slate-400 text-sm mt-0.5">Fill-in-the-blank templates — tiết kiệm 20+ giờ</div>
+        </div>
+        <div class="text-white font-bold flex-shrink-0">900,000đ</div>
+      </div>
+      <div class="p-5 border-b border-white/8 flex justify-between items-start gap-4">
+        <div>
+          <div class="font-semibold text-amber-400">⚡ BONUS #4: Hỗ Trợ Setup 1:1</div>
+          <div class="text-slate-400 text-sm mt-0.5">30 phút hướng dẫn cài đặt · Chỉ 50 người đầu tiên</div>
+        </div>
+        <div class="text-amber-400 font-bold flex-shrink-0">500,000đ</div>
+      </div>
+      <!-- Total -->
+      <div class="p-6 bg-gradient-to-r from-violet-600/10 to-cyan-600/10">
+        <div class="flex justify-between text-sm text-slate-400 mb-2">
+          <span>Tổng giá trị:</span><span class="line-through">9,400,000đ</span>
+        </div>
+        <div class="flex justify-between items-end">
+          <span class="text-white font-bold text-lg">Giá Early Bird hôm nay:</span>
+          <span class="text-4xl font-black gradient-text">759,000đ</span>
+        </div>
+        <div class="text-right text-emerald-400 text-sm mt-1 font-medium">✓ Bạn tiết kiệm 8,641,000đ (92%)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== COMPARISON ========== -->
+<section class="py-20 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">So sánh với các lựa chọn khác</h2>
+    </div>
+    <div class="glass rounded-2xl overflow-x-auto border border-white/8">
+      <table class="w-full text-sm min-w-[500px]">
+        <thead>
+          <tr class="border-b border-white/8">
+            <th class="p-4 text-left text-slate-400 font-medium w-1/4"></th>
+            <th class="p-4 text-center text-slate-400 font-medium">Thuê Agency</th>
+            <th class="p-4 text-center text-slate-400 font-medium">Tự Học Marketing</th>
+            <th class="p-4 text-center">
+              <span class="gradient-text font-bold text-base">AI Agent Kit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          <tr>
+            <td class="p-4 text-slate-300 font-medium">Chi phí</td>
+            <td class="p-4 text-center text-slate-400">5–20M/tháng</td>
+            <td class="p-4 text-center text-slate-400">Mất 3–6 tháng</td>
+            <td class="p-4 text-center text-emerald-400 font-bold">759K · một lần</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-slate-300 font-medium">Thời gian ra kết quả</td>
+            <td class="p-4 text-center text-slate-400">2–4 tuần/project</td>
+            <td class="p-4 text-center text-slate-400">Không chắc chắn</td>
+            <td class="p-4 text-center text-emerald-400 font-bold">Ngay sau khi gõ lệnh</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-slate-300 font-medium">Kiểm soát</td>
+            <td class="p-4 text-center text-slate-400">Phụ thuộc agency</td>
+            <td class="p-4 text-center text-slate-400">Tự làm hết</td>
+            <td class="p-4 text-center text-emerald-400 font-bold">AI làm · bạn kiểm soát</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-slate-300 font-medium">Tái sử dụng</td>
+            <td class="p-4 text-center text-slate-400">Trả tiền mỗi lần</td>
+            <td class="p-4 text-center text-slate-400">Tự lặp lại</td>
+            <td class="p-4 text-center text-emerald-400 font-bold">Dùng mãi · không giới hạn</td>
+          </tr>
+          <tr>
+            <td class="p-4 text-slate-300 font-medium">Phù hợp với Claude Code</td>
+            <td class="p-4 text-center text-slate-400">—</td>
+            <td class="p-4 text-center text-slate-400">—</td>
+            <td class="p-4 text-center text-emerald-400 font-bold">✓ Tích hợp native</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== WHO IS IT FOR ========== -->
+<section class="py-20 px-4">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Kit này dành cho ai?</h2>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="glass p-6 rounded-2xl border border-violet-500/20">
+        <div class="text-4xl mb-3">👩‍💻</div>
+        <h3 class="font-bold text-white mb-2">Người dùng Claude Code</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Đang dùng Claude Code nhưng chưa có workflow kinh doanh thực chiến để tận dụng hết tiềm năng của nó.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl border border-cyan-500/20">
+        <div class="text-4xl mb-3">🏪</div>
+        <h3 class="font-bold text-white mb-2">Solopreneur & Chủ SME</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Muốn xây dựng và vận hành kinh doanh online chuyên nghiệp mà không cần thuê team hay agency.</p>
+      </div>
+      <div class="glass p-6 rounded-2xl border border-emerald-500/20">
+        <div class="text-4xl mb-3">🚀</div>
+        <h3 class="font-bold text-white mb-2">Digital Product Creator</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Muốn bán khóa học, ebook, template, dịch vụ — cần cả pipeline từ market research đến checkout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== GUARANTEE ========== -->
+<section class="py-20 px-4">
+  <div class="max-w-2xl mx-auto text-center">
+    <div class="glass rounded-3xl p-10 border border-emerald-500/20">
+      <div class="text-6xl mb-4">🛡️</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Bảo Đảm Hoàn Tiền 100% Sau 30 Ngày</h2>
+      <p class="text-slate-300 text-base leading-relaxed mb-6">
+        Nếu bạn cài đặt AI Agent Business Kit, chạy ít nhất <strong class="text-white">5 commands</strong>,
+        mà không thấy output hữu ích cho kinh doanh —
+        chúng tôi sẽ hoàn lại <strong class="text-emerald-400">100% tiền. Không cần lý do.</strong>
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center text-sm text-slate-400">
+        <span class="flex items-center gap-1.5 justify-center"><span class="text-emerald-400">✓</span> 30 ngày dùng thử</span>
+        <span class="flex items-center gap-1.5 justify-center"><span class="text-emerald-400">✓</span> Không cần lý do</span>
+        <span class="flex items-center gap-1.5 justify-center"><span class="text-emerald-400">✓</span> Hoàn tiền trong 3 ngày</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== FAQ ========== -->
+<section class="py-20 px-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-3">Câu hỏi thường gặp</h2>
+    </div>
+    <div class="space-y-3">
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full text-left p-5 flex justify-between items-center gap-4">
+          <span class="font-semibold text-white">Em không biết dùng Claude Code — có dùng được không?</span>
+          <span class="faq-icon text-cyan-400 text-2xl flex-shrink-0 leading-none">+</span>
+        </button>
+        <div class="faq-content">
+          <p class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">Được. Kit đi kèm hướng dẫn cài đặt step-by-step trong nhóm Telegram. Ngoài ra, Fast-Action Bonus (50 người đầu tiên) có hỗ trợ setup 1:1 — đảm bảo bạn chạy được lệnh đầu tiên.</p>
+        </div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full text-left p-5 flex justify-between items-center gap-4">
+          <span class="font-semibold text-white">AI output có chính xác không hay random như ChatGPT?</span>
+          <span class="faq-icon text-cyan-400 text-2xl flex-shrink-0 leading-none">+</span>
+        </button>
+        <div class="faq-content">
+          <p class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">Mỗi Agent được trang bị Reference Libraries chuyên sâu (frameworks, templates, knowledge bases được nghiên cứu sẵn). Output dựa trên proven methodologies — không phải random prompt. Đó chính xác là điểm khác biệt của kit này.</p>
+        </div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full text-left p-5 flex justify-between items-center gap-4">
+          <span class="font-semibold text-white">759K đắt hay rẻ so với giá trị thực?</span>
+          <span class="faq-icon text-cyan-400 text-2xl flex-shrink-0 leading-none">+</span>
+        </button>
+        <div class="faq-content">
+          <p class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">Thuê copywriter viết 1 sales page = 2–5M. Thuê agency research thị trường = 3–10M. Kit này làm được cả hai và 16 việc khác, không giới hạn số lần, dùng mãi. 759K = giá trị bữa ăn team. Value ratio: 12.4× giá tiền.</p>
+        </div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full text-left p-5 flex justify-between items-center gap-4">
+          <span class="font-semibold text-white">Tự prompt Claude trực tiếp được mà — cần kit làm gì?</span>
+          <span class="faq-icon text-cyan-400 text-2xl flex-shrink-0 leading-none">+</span>
+        </button>
+        <div class="faq-content">
+          <p class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">Prompt 1 lần ≠ hệ thống. Kit có 5 Agents chuyên biệt với knowledge base riêng, workflows liên kết từ research đến checkout, và 18 commands được optimize cho kinh doanh VN. Khác nhau như dùng Google Maps vs cố nhớ đường.</p>
+        </div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden">
+        <button class="faq-btn w-full text-left p-5 flex justify-between items-center gap-4">
+          <span class="font-semibold text-white">Nhận kit bằng cách nào sau khi thanh toán?</span>
+          <span class="faq-icon text-cyan-400 text-2xl flex-shrink-0 leading-none">+</span>
+        </button>
+        <div class="faq-content">
+          <p class="px-5 pb-5 text-slate-400 text-sm leading-relaxed">Sau khi chuyển khoản thành công, nhấn nút "Tôi đã thanh toán" trên trang này. Bạn sẽ được dẫn vào nhóm Telegram riêng để tải file kit + xem video hướng dẫn cài đặt và sử dụng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== PAYMENT / CTA ========== -->
+<section id="payment" class="py-20 px-4">
+  <div class="max-w-xl mx-auto">
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm text-amber-400 mb-5">
+        <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse flex-shrink-0"></span>
+        Early Bird · Còn <strong id="slots-left">97</strong> suất với giá 759,000đ
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">Sở hữu AI Agent Business Kit</h2>
+      <p class="text-slate-400 text-sm">Thanh toán qua VietQR · Nhận kit ngay trong hôm nay</p>
+    </div>
+
+    <!-- Pricing card -->
+    <div class="glass rounded-3xl overflow-hidden border border-violet-500/25">
+      <!-- What you get header -->
+      <div class="bg-gradient-to-r from-violet-600/15 to-cyan-600/15 p-5 border-b border-white/8 text-center">
+        <p class="text-slate-300 text-sm">Bạn nhận được:</p>
+        <p class="text-white font-semibold mt-1">5 AI Agents · 18 Skills · 18 Commands · 4 Bonuses</p>
+      </div>
+
+      <!-- Price display -->
+      <div class="p-6 border-b border-white/8 text-center">
+        <p class="text-slate-500 text-sm line-through mb-1">Giá gốc: 9,400,000đ</p>
+        <p class="text-5xl font-black gradient-text mb-1">759,000đ</p>
+        <p class="text-emerald-400 text-sm font-medium">✓ Bạn tiết kiệm 8,641,000đ (92%)</p>
+      </div>
+
+      <!-- QR + Instructions -->
+      <div class="p-7">
+        <p class="text-center text-slate-300 text-sm mb-5">
+          📱 Mở app ngân hàng → Quét QR → Chuyển khoản đúng <strong class="text-white">759,000đ</strong>
+        </p>
+
+        <!-- QR Code image -->
+        <!-- ============================================================
+             ⚠️  CẬP NHẬT THÔNG TIN TÀI KHOẢN CỦA BẠN PHÍA DƯỚI ⚠️
+             Thay 0983391902 = số tài khoản ngân hàng
+             Thay MB    = tên ngân hàng (vd: Vietcombank, MB, Techcombank...)
+             ============================================================ -->
+        <div class="flex justify-center mb-5">
+          <div class="bg-white p-3 rounded-2xl shadow-xl shadow-violet-500/15">
+            <img
+              id="payment-qr"
+              src="https://qr.sepay.vn/img?acc=0983391902&bank=MB&amount=759000&des=AIKIT_ORDER&template=compact"
+              alt="QR Thanh toán 759,000đ — AI Agent Business Kit"
+              class="w-52 h-52 object-contain rounded-lg"
+              onerror="this.parentElement.innerHTML='<div class=\'w-52 h-52 flex flex-col items-center justify-center bg-slate-100 rounded-xl text-slate-500 text-xs text-center p-4\'><span class=\'text-3xl mb-2\'>🏦</span><span>Cập nhật thông tin ngân hàng<br>trong file index.html</span></div>'"
+            />
+          </div>
+        </div>
+
+        <!-- Bank details card -->
+        <!-- ⚠️ Cập nhật id="bank-name" và id="account-number" phía dưới -->
+        <div class="glass rounded-xl p-4 mb-5 text-sm space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Chủ tài khoản:</span>
+            <span class="text-white font-semibold">DANG CAO CUONG</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-white/5 pt-2">
+            <span class="text-slate-400">Ngân hàng:</span>
+            <span class="text-white font-semibold" id="bank-name">MB</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-white/5 pt-2">
+            <span class="text-slate-400">Số tài khoản:</span>
+            <span class="text-white font-mono font-semibold" id="account-number">0983391902</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-white/5 pt-2">
+            <span class="text-slate-400">Số tiền:</span>
+            <span class="text-white font-bold">759,000đ</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-white/5 pt-2">
+            <span class="text-slate-400">Nội dung CK:</span>
+            <span class="text-amber-400 font-mono font-bold text-xs" id="order-id">AIKIT_ORDER</span>
+          </div>
+        </div>
+
+        <!-- Payment status widget — auto polling -->
+        <div id="pay-status" class="rounded-xl overflow-hidden">
+
+          <!-- State: waiting (default) -->
+          <div id="state-waiting" class="glass rounded-xl p-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-1">
+              <span class="w-2.5 h-2.5 bg-amber-400 rounded-full animate-pulse flex-shrink-0"></span>
+              <span class="text-amber-300 font-semibold text-sm">Đang chờ xác nhận thanh toán...</span>
+            </div>
+            <p class="text-slate-500 text-xs">Tự động xác nhận khi tiền vào — thường trong 30–60 giây</p>
+          </div>
+
+          <!-- State: confirmed (hidden by default) -->
+          <div id="state-confirmed" class="hidden bg-emerald-500/15 border border-emerald-500/30 rounded-xl p-4 text-center">
+            <div class="text-2xl mb-1">✅</div>
+            <p class="text-emerald-400 font-bold text-base">Thanh toán xác nhận!</p>
+            <p class="text-slate-300 text-sm mt-1">Đang chuyển bạn sang trang nhận kit
+              <span id="countdown" class="text-white font-bold"></span>
+            </p>
+            <div class="mt-3 h-1 bg-white/10 rounded-full overflow-hidden">
+              <div id="progress-bar" class="h-full bg-emerald-400 rounded-full transition-all duration-1000" style="width:0%"></div>
+            </div>
+          </div>
+
+          <!-- State: timeout (hidden by default) -->
+          <div id="state-timeout" class="hidden glass border border-amber-500/20 rounded-xl p-4 text-center">
+            <p class="text-amber-400 font-semibold text-sm mb-1">⚠️ Chưa nhận được xác nhận tự động</p>
+            <p class="text-slate-400 text-xs mb-3">Nếu đã chuyển khoản, nhấn nút bên dưới để báo admin</p>
+            <a id="manual-btn" href="#" target="_blank"
+               class="cta-btn text-white block text-center py-3 px-4 rounded-xl font-semibold text-sm">
+              📩 Nhắn admin xác nhận thủ công
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="grid grid-cols-3 gap-3 mt-5">
+      <div class="glass rounded-xl p-3.5 text-center">
+        <div class="text-xl mb-1">🛡️</div>
+        <div class="text-xs text-slate-400 leading-tight">Hoàn tiền<br>30 ngày</div>
+      </div>
+      <div class="glass rounded-xl p-3.5 text-center">
+        <div class="text-xl mb-1">⚡</div>
+        <div class="text-xs text-slate-400 leading-tight">Nhận kit<br>ngay hôm nay</div>
+      </div>
+      <div class="glass rounded-xl p-3.5 text-center">
+        <div class="text-xl mb-1">🔒</div>
+        <div class="text-xs text-slate-400 leading-tight">Thanh toán<br>VietQR an toàn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="py-12 px-4 border-t border-white/5 text-center text-slate-500 text-sm">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-2xl mb-3">🤖</div>
+    <p class="font-bold text-white text-base mb-1">AI Agent Business Kit</p>
+    <p class="mb-4 text-slate-400">5 AI Agents · 18 Skills · 18 Commands · Claude Code</p>
+    <p>© 2026 AI Agent Business Kit · Mọi quyền được bảo lưu</p>
+    <p class="mt-1 text-slate-600 text-xs">Câu hỏi hỗ trợ? Liên hệ qua nhóm Telegram sau khi mua.</p>
+  </div>
+</footer>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const content = btn.nextElementSibling;
+      const icon    = btn.querySelector('.faq-icon');
+      const isOpen  = content.classList.contains('open');
+      document.querySelectorAll('.faq-content').forEach(c => c.classList.remove('open'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+      if (!isOpen) { content.classList.add('open'); icon.textContent = '−'; }
+    });
+  });
+
+  // Unique order ID per visitor (for payment matching)
+  const orderId = 'AIKIT' + Date.now().toString().slice(-7);
+  document.getElementById('order-id').textContent = orderId;
+
+  // Inject order ID into QR src
+  const qr = document.getElementById('payment-qr');
+  if (qr) qr.src = qr.src.replace('AIKIT_ORDER', orderId);
+
+  // ============================================================
+  // ⚠️ SAU KHI DEPLOY WORKER, thay URL bên dưới:
+  // npx wrangler deploy (trong thư mục /worker)
+  // Lấy URL dạng: https://aikit-payment.TEN.workers.dev
+  const WORKER_URL = 'https://aikit-payment.YOUR_SUBDOMAIN.workers.dev';
+  // ============================================================
+
+  (function startPolling() {
+    const MAX_ATTEMPTS = 120;   // 10 phút (120 × 5s)
+    const INTERVAL_MS  = 5000;
+    let   attempts     = 0;
+    let   timer;
+
+    const stateWaiting   = document.getElementById('state-waiting');
+    const stateConfirmed = document.getElementById('state-confirmed');
+    const stateTimeout   = document.getElementById('state-timeout');
+    const progressBar    = document.getElementById('progress-bar');
+    const countdownEl    = document.getElementById('countdown');
+    const manualBtn      = document.getElementById('manual-btn');
+
+    // Cập nhật link nhắn admin với order ID
+    if (manualBtn) {
+      const msg = encodeURIComponent('Xin chào, tôi đã chuyển khoản mã đơn: ' + orderId + '. Vui lòng xác nhận để nhận AI Agent Business Kit.');
+      manualBtn.href = 'https://t.me/share/url?url=&text=' + msg;
+    }
+
+    async function checkPayment() {
+      try {
+        const res  = await fetch(WORKER_URL + '/check?id=' + orderId);
+        const data = await res.json();
+
+        if (data.paid) {
+          clearInterval(timer);
+          showConfirmed();
+          return;
+        }
+      } catch (_) {
+        // Network error — tiếp tục polling
+      }
+
+      attempts++;
+      if (attempts >= MAX_ATTEMPTS) {
+        clearInterval(timer);
+        showTimeout();
+      }
+    }
+
+    function showConfirmed() {
+      stateWaiting.classList.add('hidden');
+      stateConfirmed.classList.remove('hidden');
+
+      let secs = 4;
+      countdownEl.textContent = ' (' + secs + ')';
+      progressBar.style.width = '0%';
+
+      const tick = setInterval(() => {
+        secs--;
+        countdownEl.textContent = ' (' + secs + ')';
+        progressBar.style.width = ((4 - secs) / 4 * 100) + '%';
+        if (secs <= 0) {
+          clearInterval(tick);
+          window.location.href = 'thank-you.html';
+        }
+      }, 1000);
+    }
+
+    function showTimeout() {
+      stateWaiting.classList.add('hidden');
+      stateTimeout.classList.remove('hidden');
+    }
+
+    // Bắt đầu polling ngay sau khi load
+    timer = setInterval(checkPayment, INTERVAL_MS);
+    checkPayment(); // lần đầu không chờ
+  })();
+
+  // ============================================================
+  // ⚠️ ĐỂ CẬP NHẬT THÔNG TIN NGÂN HÀNG THỰC:
+  //    1. Mở file index.html
+  //    2. Tìm "0983391902" → thay bằng số TK thực (vd: 0123456789)
+  //    3. Tìm "MB" → thay bằng tên NH thực (vd: Vietcombank)
+  //    4. Tương tự cập nhật id="bank-name" và id="account-number"
+  //    Xem thêm: skills/payment-embed/references/sepay-embed-guide.md
+  // ============================================================
+</script>
+
+</body>
+</html>

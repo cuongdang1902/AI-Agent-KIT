@@ -1,0 +1,26 @@
+name            = "aikit-mcp"
+main            = "worker.js"
+compatibility_date = "2025-01-01"
+
+# ─────────────────────────────────────────────────────────────
+# KV Namespace — Licenses
+#
+# Create the namespace once:
+#   npx wrangler kv:namespace create LICENSES_KV
+#
+# Replace the id below with the ID printed by that command.
+# ─────────────────────────────────────────────────────────────
+[[kv_namespaces]]
+binding = "LICENSES_KV"
+id      = "YOUR_LICENSES_KV_ID"
+
+# For local dev / `wrangler dev`, create a preview namespace too:
+#   npx wrangler kv:namespace create LICENSES_KV --preview
+# Then uncomment and fill in:
+# preview_id = "YOUR_LICENSES_KV_PREVIEW_ID"
+
+# ─────────────────────────────────────────────────────────────
+# Optional: custom domain after deployment
+# ─────────────────────────────────────────────────────────────
+# [env.production]
+# routes = [{ pattern = "mcp.yourdomain.com/*", custom_domain = true }]

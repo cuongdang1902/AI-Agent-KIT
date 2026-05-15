@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cảm ơn bạn! — AI Agent Business Kit</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { font-family: 'Be Vietnam Pro', sans-serif; }
+    body { background-color: #080d1a; color: #f1f5f9; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #a78bfa, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .cta-btn {
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      box-shadow: 0 4px 28px rgba(124,58,237,0.5);
+      transition: all 0.3s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 36px rgba(124,58,237,0.7);
+    }
+
+    .pulse-ring {
+      animation: pulseRing 2.5s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+      70%  { box-shadow: 0 0 0 18px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+
+    .step-card { transition: all 0.2s ease; }
+    .step-card:hover { transform: translateY(-2px); }
+
+    code { font-family: 'Courier New', monospace; }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center px-4 py-16"
+  style="background: radial-gradient(ellipse at 50% 0%, #0e1a40 0%, #080d1a 60%);">
+
+  <div class="max-w-xl w-full">
+
+    <!-- Success icon -->
+    <div class="text-center mb-8">
+      <div class="w-24 h-24 bg-emerald-500/15 rounded-full flex items-center justify-center mx-auto mb-5 pulse-ring">
+        <span class="text-5xl">✅</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white mb-2">
+        Cảm ơn bạn! 🎉
+      </h1>
+      <p class="text-lg text-slate-300">
+        Thanh toán đã được ghi nhận.<br>
+        <strong class="text-white">AI Agent Business Kit đang chờ bạn.</strong>
+      </p>
+    </div>
+
+    <!-- Main CTA card -->
+    <div class="glass rounded-3xl p-7 mb-5 border border-emerald-500/20 text-center">
+      <div class="text-3xl mb-3">📲</div>
+      <h2 class="font-bold text-white text-xl mb-2">Bước 1: Vào nhóm Telegram để nhận kit</h2>
+      <p class="text-slate-400 text-sm mb-5 leading-relaxed">
+        Nhóm có sẵn: file kit để tải, video hướng dẫn cài đặt, và cộng đồng hỗ trợ.
+      </p>
+      <!-- ============================================================
+           Telegram group link
+           ============================================================ -->
+      <a href="https://t.me/+-KpwV8EIljIxYTI1"
+         target="_blank"
+         rel="noopener"
+         class="cta-btn text-white block text-center py-4 px-6 rounded-xl font-bold text-lg mb-3">
+        🚀 Vào nhóm Telegram nhận kit ngay
+      </a>
+      <p class="text-slate-500 text-xs">Link sẽ mở nhóm Telegram — nhấn "Join Group" để vào.</p>
+    </div>
+
+    <!-- What's next -->
+    <div class="glass rounded-2xl p-6 mb-5 border border-white/8">
+      <h3 class="font-bold text-white mb-4 text-center">📋 Làm gì tiếp theo trong nhóm?</h3>
+      <div class="space-y-3">
+        <div class="step-card glass rounded-xl p-4 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
+          <div>
+            <p class="text-white font-medium text-sm">Tải file AI Agent Business Kit</p>
+            <p class="text-slate-400 text-xs mt-0.5">File ZIP chứa toàn bộ kit — ghim ở đầu nhóm</p>
+          </div>
+        </div>
+        <div class="step-card glass rounded-xl p-4 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
+          <div>
+            <p class="text-white font-medium text-sm">Xem video hướng dẫn cài đặt</p>
+            <p class="text-slate-400 text-xs mt-0.5">Setup Claude Code + import kit trong ~5 phút</p>
+          </div>
+        </div>
+        <div class="step-card glass rounded-xl p-4 flex items-start gap-3">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
+          <div>
+            <p class="text-white font-medium text-sm">Chạy lệnh đầu tiên</p>
+            <p class="text-slate-400 text-xs mt-0.5">Gõ <code class="text-cyan-400">/research [niche của bạn]</code> và xem AI làm việc</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-day quick start reminder -->
+    <div class="glass rounded-2xl p-5 mb-5 border border-white/5">
+      <h3 class="font-bold text-white text-sm mb-3 text-center">⚡ Quick Start — 7 ngày đầu tiên</h3>
+      <div class="text-xs text-slate-400 space-y-1.5">
+        <div class="flex gap-2"><span class="text-violet-400 font-semibold w-16 flex-shrink-0">Ngày 1</span><span>Chạy <code class="text-cyan-400">/research [niche]</code> + <code class="text-cyan-400">/competitor</code></span></div>
+        <div class="flex gap-2"><span class="text-violet-400 font-semibold w-16 flex-shrink-0">Ngày 2–3</span><span>Chạy <code class="text-cyan-400">/offer</code> → có offer package đầy đủ</span></div>
+        <div class="flex gap-2"><span class="text-violet-400 font-semibold w-16 flex-shrink-0">Ngày 4–5</span><span>Chạy <code class="text-cyan-400">/copy PAS</code> + <code class="text-cyan-400">/sales-page</code></span></div>
+        <div class="flex gap-2"><span class="text-violet-400 font-semibold w-16 flex-shrink-0">Ngày 6–7</span><span>Chạy <code class="text-cyan-400">/landing-page</code> + <code class="text-cyan-400">/payment-embed</code> + <code class="text-cyan-400">/deploy</code> → live! 🚀</span></div>
+      </div>
+    </div>
+
+    <!-- Back link -->
+    <div class="text-center">
+      <a href="index.html" class="text-slate-500 text-sm hover:text-slate-300 transition">← Quay lại trang chính</a>
+    </div>
+
+  </div>
+</body>
+</html>

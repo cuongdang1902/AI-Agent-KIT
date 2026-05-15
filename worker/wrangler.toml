@@ -1,0 +1,10 @@
+name = "aikit-payment"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# KV Namespace — chạy lệnh bên dưới để lấy ID thật:
+# npx wrangler kv:namespace create ORDERS_KV
+# Sau đó thay YOUR_KV_NAMESPACE_ID bằng id trả về
+[[kv_namespaces]]
+binding = "ORDERS_KV"
+id      = "YOUR_KV_NAMESPACE_ID"
